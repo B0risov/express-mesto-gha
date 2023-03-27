@@ -10,7 +10,7 @@ const getUsers = async (req, res) => {
     const users = await User.find({});
     res.status(SUCCESS_CODE).send(users);
   } catch (err) {
-    res.status(SERVER_CODE).send({ message: 'Произошла ошибка' });
+    res.status(SERVER_CODE).send({ message: 'На сервере произошла ошибка' });
   }
 };
 
@@ -26,7 +26,7 @@ const getUser = async (req, res) => {
     if (err.name === 'CastError') {
       res.status(DATA_CODE).send({ message: 'Переданы неккоректные данные' });
     } else {
-      res.status(SERVER_CODE).send({ message: 'Произошла ошибка' });
+      res.status(SERVER_CODE).send({ message: 'На сервере произошла ошибка' });
     }
   }
 };
@@ -39,7 +39,7 @@ const createUser = async (req, res) => {
     if (err.name === 'ValidationError') {
       res.status(DATA_CODE).send({ message: 'Переданы неккоректные данные' });
     } else {
-      res.status(SERVER_CODE).send({ message: 'Произошла ошибка' });
+      res.status(SERVER_CODE).send({ message: 'На сервере произошла ошибка' });
     }
   }
 };
@@ -59,7 +59,7 @@ const updateProfile = async (req, res) => {
     if (err.name === 'ValidationError') {
       res.status(DATA_CODE).send({ message: 'Переданы неккоректные данные' });
     } else {
-      res.status(SERVER_CODE).send({ message: 'Произошла ошибка' });
+      res.status(SERVER_CODE).send({ message: 'На сервере произошла ошибка' });
     }
   }
 };
@@ -78,7 +78,7 @@ const updateAvatar = async (req, res) => {
     if (err.name === 'ValidationError') {
       res.status(DATA_CODE).send({ message: 'Переданы неккоректные данные' });
     } else {
-      res.status(SERVER_CODE).send({ message: 'Произошла ошибка' });
+      res.status(SERVER_CODE).send({ message: 'На сервере произошла ошибка' });
     }
   }
 };
