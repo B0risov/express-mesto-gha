@@ -1,5 +1,5 @@
-const regexUrl = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w.-]*)*\/?$/;
+const BAD_REQUEST_MESSAGE = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w.-]*)*\/?$/;
 
 module.exports = {
-  regexUrl,
+  BAD_REQUEST_MESSAGE,
 };

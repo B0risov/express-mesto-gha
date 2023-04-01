@@ -106,19 +106,20 @@ const updateAvatar = async (req, res, next) => {
   }
 };
 
+// eslint-disable-next-line consistent-return
 const login = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email }).select('+password');
     if (!user) {
-      next(new Authorization('Пользователь не найден'));
+      return next(new Authorization('Пользователь не найден'));
     }
 
     const isUserValid = await bcrypt.compare(password, user.password);
     if (isUserValid) {
       const token = jwt.sign({ _id: user._id }, 'super-strong-secret', { expiresIn: '7d' });
 
-      res.send({ token });
+      return res.send({ token });
     }
     next(new Authorization('Неверный логин или пароль'));
   } catch (err) {

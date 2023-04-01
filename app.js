@@ -11,7 +11,7 @@ const {
 } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const NotFound = require('./errors/notFound');
-const { regexUrl } = require('./constants');
+const { BAD_REQUEST_MESSAGE } = require('./constants');
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -46,7 +46,7 @@ app.post(
       password: Joi.string().required(),
       name: Joi.string().min(2).max(30),
       about: Joi.string().min(2).max(30),
-      avatar: Joi.string().regex(regexUrl),
+      avatar: Joi.string().regex(BAD_REQUEST_MESSAGE),
     }),
   }),
   createUser,

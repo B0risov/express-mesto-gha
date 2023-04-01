@@ -5,7 +5,7 @@ const userRoutes = express.Router();
 const {
   getUsers, getUser, updateProfile, updateAvatar, getUserInfo,
 } = require('../controllers/users');
-const { regexUrl } = require('../constants');
+const { BAD_REQUEST_MESSAGE } = require('../constants');
 
 userRoutes.get('/users', getUsers);
 userRoutes.get('/users/me', getUserInfo);
@@ -23,8 +23,8 @@ userRoutes.patch(
   '/users/me',
   celebrate({
     body: Joi.object().keys({
-      name: Joi.string().min(2).max(30),
-      about: Joi.string().min(2).max(30),
+      name: Joi.string().min(2).max(30).required(),
+      about: Joi.string().min(2).max(30).required(),
     }),
   }),
   updateProfile,
@@ -33,7 +33,7 @@ userRoutes.patch(
   '/users/me/avatar',
   celebrate({
     body: Joi.object().keys({
-      avatar: Joi.string().regex(regexUrl),
+      avatar: Joi.string().regex(BAD_REQUEST_MESSAGE).required(),
     }),
   }),
   updateAvatar,
