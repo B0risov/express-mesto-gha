@@ -106,7 +106,6 @@ const updateAvatar = async (req, res, next) => {
   }
 };
 
-// eslint-disable-next-line consistent-return
 const login = async (req, res, next) => {
   const { email, password } = req.body;
   try {
@@ -121,9 +120,9 @@ const login = async (req, res, next) => {
 
       return res.send({ token });
     }
-    next(new Authorization('Неверный логин или пароль'));
+    return next(new Authorization('Неверный логин или пароль'));
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
